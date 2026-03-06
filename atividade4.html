@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout com Paleta de Cores</title>
+    <style>
+        :root {
+            --cor-primaria: #264653;
+            --cor-secundaria: #2a9d8f; 
+            --cor-acento: #e9c46a; 
+            --cor-fundo: #f4f4f4; 
+            --cor-texto: #333333; 
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+        }
+
+        header {
+            background-color: var(--cor-primaria);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        aside {
+            background-color: var(--cor-secundaria);
+            color: white;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        footer {
+            background-color: var(--cor-primaria);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .botao {
+            background-color: var(--cor-acento);
+            border: none;
+            color: var(--cor-texto);
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .botao:hover {
+            background-color: #d4b95d;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meu Site com Paleta</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Bem-vindo!</h2>
+        <p>Este é um exemplo de layout básico usando uma paleta de cores harmoniosa gerada no Colormind.</p>
+        <button class="botao">Clique aqui</button>
+    </section>
+
+    <aside>
+        <h3>Anúncio/Info</h3>
+        <p>Este é um espaço para destacar informações importantes ou propaganda.</p>
+    </aside>
+
+    <footer>
+        2026 Meu Site. Todos os direitos reservados.
+    </footer>
+</body>
+</html>
