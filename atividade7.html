@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsividade com Variáveis CSS</title>
+    <style>
+
+        :root {
+
+            --font-size-h1: 24px;
+            --font-size-h2: 20px;
+            --font-size-h3: 18px;
+            --font-size-p: 14px;
+
+            /* Espaçamentos */
+            --spacing-small: 8px;
+            --spacing-medium: 16px;
+            --spacing-large: 24px;
+
+
+            --padding-container: 16px;
+            --margin-bottom: 16px;
+
+
+            --color-primary: #3498db;
+            --color-secondary: #2c3e50;
+            --color-background: #ecf0f1;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-secondary);
+            line-height: 1.6;
+            padding: var(--padding-container);
+        }
+
+
+        header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: var(--spacing-large);
+            margin-bottom: var(--margin-bottom);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: var(--font-size-h1);
+            margin-bottom: var(--spacing-medium);
+        }
+
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            background-color: white;
+            padding: var(--padding-container);
+            margin-bottom: var(--margin-bottom);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: var(--font-size-h2);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-medium);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: var(--spacing-small);
+        }
+
+        h3 {
+            font-size: var(--font-size-h3);
+            color: var(--color-secondary);
+            margin-top: var(--spacing-large);
+            margin-bottom: var(--spacing-medium);
+        }
+
+        p {
+            font-size: var(--font-size-p);
+            margin-bottom: var(--spacing-medium);
+            text-align: justify;
+        }
+
+
+        .card-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-medium);
+            margin-top: var(--spacing-large);
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            border-left: 4px solid var(--color-primary);
+            padding: var(--spacing-medium);
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateX(5px);
+        }
+
+        .card h4 {
+            font-size: var(--font-size-h3);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-small);
+        }
+
+        .card p {
+            margin-bottom: 0;
+        }
+
+
+        footer {
+            background-color: var(--color-secondary);
+            color: white;
+            padding: var(--spacing-large);
+            text-align: center;
+            margin-top: var(--margin-bottom);
+            border-radius: 8px;
+        }
+
+        footer p {
+            color: white;
+            margin-bottom: 0;
+        }
+
+
+        @media (min-width: 768px) {
+            :root {
+
+                --font-size-h1: 32px;
+                --font-size-h2: 24px;
+                --font-size-h3: 20px;
+                --font-size-p: 16px;
+
+                --spacing-small: 12px;
+                --spacing-medium: 20px;
+                --spacing-large: 32px;
+
+
+                --padding-container: 24px;
+                --margin-bottom: 20px;
+            }
+
+            body {
+                padding: var(--padding-container);
+            }
+
+            .card-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        @media (min-width: 1024px) {
+            :root {
+
+                --font-size-h1: 40px;
+                --font-size-h2: 28px;
+                --font-size-h3: 22px;
+                --font-size-p: 18px;
+
+
+                --spacing-small: 16px;
+                --spacing-medium: 24px;
+                --spacing-large: 40px;
+
+
+                --padding-container: 32px;
+                --margin-bottom: 24px;
+            }
+
+            body {
+                padding: 0;
+            }
+
+            main {
+                padding: var(--padding-container);
+            }
+
+            .card-container {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            header {
+                border-radius: 12px;
+            }
+
+            section {
+                border-radius: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Variáveis CSS e Responsividade</h1>
+        <p>Exemplo de layout responsivo usando CSS Custom Properties (Variáveis CSS)</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Por que usar Variáveis CSS?</h2>
+            <p>
+                As variáveis CSS (também conhecidas como CSS Custom Properties) permitem armazenar valores 
+                reutilizáveis que podem ser facilmente atualizados em diferentes pontos do código. Isso é 
+                extremamente útil para criar layouts responsivos e manter consistência no design.
+            </p>
+
+            <h3>Benefícios:</h3>
+            <ul style="margin-left: var(--spacing-large); margin-bottom: var(--spacing-medium);">
+                <li style="margin-bottom: var(--spacing-small);">Manutenção facilitada - altere uma variável e aplica em todo o site</li>
+                <li style="margin-bottom: var(--spacing-small);">Consistência de design - mesmo tamanho em múltiplos elementos</li>
+                <li style="margin-bottom: var(--spacing-small);">Responsividade simplificada - ajuste com @media queries</li>
+                <li style="margin-bottom: var(--spacing-small);">Redução de código repetitivo</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Variáveis Definidas</h2>
+            <p>
+                Este documento usa variáveis CSS que se adaptam a diferentes tamanhos de tela:
+            </p>
+
+            <div class="card-container">
+                <div class="card">
+                    <h4>📱 Mobile (até 768px)</h4>
+                    <p>
+                        <strong>Fonte H1:</strong> 24px<br>
+                        <strong>Espaçamento:</strong> 8px a 24px<br>
+                        <strong>Layout:</strong> 1 coluna
+                    </p>
+                </div>
+                <div class="card">
+                    <h4>💻 Tablet (768px - 1023px)</h4>
+                    <p>
+                        <strong>Fonte H1:</strong> 32px<br>
+                        <strong>Espaçamento:</strong> 12px a 32px<br>
+                        <strong>Layout:</strong> 2 colunas
+                    </p>
+                </div>
+                <div class="card">
+                    <h4>🖥️ Desktop (1024px+)</h4>
+                    <p>
+                        <strong>Fonte H1:</strong> 40px<br>
+                        <strong>Espaçamento:</strong> 16px a 40px<br>
+                        <strong>Layout:</strong> 3 colunas
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Como Funciona</h2>
+            
+            <h3>1. Definição das Variáveis (no :root)</h3>
+            <p>
+                As variáveis são definidas no seletor <code>:root</code>, o que as torna globais e acessíveis 
+                em todo o documento CSS. Cada variável começa com dois hífens (<code>--</code>).
+            </p>
+
+            <h3>2. Aplicação das Variáveis</h3>
+            <p>
+                Para usar uma variável, utilize a função <code>var(--nome-da-variavel)</code> em qualquer 
+                propriedade CSS.
+            </p>
+
+            <h3>3. Modificação em Media Queries</h3>
+            <p>
+                Dentro de <code>@media queries</code>, você pode redefini as variáveis do :root para que 
+                todos os elementos usando essas variáveis sejam atualizados automaticamente.
+            </p>
+        </section>
+
+        <section>
+            <h2>Exemplo de Código</h2>
+            <p>
+                <strong>Definição no :root:</strong><br>
+                <code style="background: #f0f0f0; padding: var(--spacing-small); display: block; margin: var(--spacing-medium) 0; border-radius: 4px;">
+                    :root {<br>
+                    &nbsp;&nbsp;--font-size-h1: 24px;<br>
+                    &nbsp;&nbsp;--spacing-large: 24px;<br>      
+                    }
+                </code>
+            </p>
+
+            <p>
+                <strong>Aplicação em elementos:</strong><br>
+                <code style="background: #f0f0f0; padding: var(--spacing-small); display: block; margin: var(--spacing-medium) 0; border-radius: 4px;">
+                    h1 {<br>
+                    &nbsp;&nbsp;font-size: var(--font-size-h1);<br>
+                    &nbsp;&nbsp;margin-bottom: var(--spacing-large);<br>
+                    }
+                </code>
+            </p>
+
+            <p>
+                <strong>Modificação em Media Query:</strong><br>
+                <code style="background: #f0f0f0; padding: var(--spacing-small); display: block; margin: var(--spacing-medium) 0; border-radius: 4px;">
+                    @media (min-width: 768px) {<br>
+                    &nbsp;&nbsp;:root {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;--font-size-h1: 32px;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;--spacing-large: 32px;<br>
+                    &nbsp;&nbsp;}<br>
+                    }
+                </code>
+            </p>
+        </section>
+
+        <section>
+            <h2>Dicas Importantes</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h4>✓ Use :root</h4>
+                    <p>Defina variáveis globais no seletor :root para acessibilidade em todo o documento.</p>
+                </div>
+                <div class="card">
+                    <h4>✓ Nomenclatura Clara</h4>
+                    <p>Use nomes descritivos como --spacing-large, --font-size-h1 para melhor compreensão.</p>
+                </div>
+                <div class="card">
+                    <h4>✓ Teste em Vários Tamanhos</h4>
+                    <p>Verifique seu layout em mobile, tablet e desktop para garantir responsividade.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Exemplo de Responsividade com Variáveis CSS | Redimensione a janela para ver as mudanças!</p>
+    </footer>
+</body>
+</html>
