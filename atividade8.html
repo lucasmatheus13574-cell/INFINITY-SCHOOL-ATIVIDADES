@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio Pessoal</title>
+    <style>
+        :root {
+            --bg: #f5f7fb;
+            --panel: #ffffff;
+            --primary: #0b72ff;
+            --text: #111;
+            --muted: #555;
+            --radius: 12px;
+            --shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+            --gap: 18px;
+            --max: 1000px;
+            --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font);
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.5;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: min(100%, var(--max));
+            margin: 0 auto;
+            padding: 24px 16px;
+        }
+
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--gap);
+            margin-bottom: 32px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        nav a {
+            font-weight: 600;
+        }
+
+        .panel {
+            background: var(--panel);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            margin-top: 0;
+        }
+
+        .profile {
+            display: grid;
+            gap: 18px;
+        }
+
+        .profile img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(11, 114, 255, 0.3);
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .skills li {
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(11, 114, 255, 0.1);
+            font-weight: 600;
+        }
+
+        .projects {
+            display: grid;
+            gap: 18px;
+        }
+
+        .project {
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .project h3 {
+            margin: 0 0 10px;
+        }
+
+        .contact-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .contact-card {
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .social-links a {
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+        }
+
+        form {
+            display: grid;
+            gap: 14px;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        input,
+        textarea {
+            padding: 11px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.16);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 18px;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        button:hover {
+            filter: brightness(0.95);
+        }
+
+        .note {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        @media (min-width: 720px) {
+            .profile {
+                grid-template-columns: 170px 1fr;
+                align-items: center;
+            }
+
+            .projects {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .contact-grid {
+                grid-template-columns: 1.2fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1>Portfólio do Lucas</h1>
+                <p style="color: var(--color-muted); margin-top: 6px;">Crio sites simples, rápidos e fáceis de manter.</p>
+            </div>
+
+            <nav class="nav" aria-label="Navegação principal">
+                <a href="#sobre">Sobre</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </header>
+
+        <section id="sobre" class="panel">
+            <div class="profile">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cdefs%3E%3CradialGradient id='a' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%237aa9ff'/%3E%3Cstop offset='100%25' stop-color='%23234569'/%3E%3C/radialGradient%3E%3Cfilter id='b' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='10'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23a)'/%3E%3Ccircle cx='200' cy='170' r='90' fill='%23fff' fill-opacity='0.2'/%3E%3Cpath d='M100 320c0-66 49-120 110-120s110 54 110 120' stroke='%23fff' stroke-width='18' fill='none' stroke-opacity='0.5' filter='url(%23b)'/%3E%3C/svg%3E"
+                    alt="Imagem de perfil" />
+
+                <div>
+                    <h2>Olá! Sou Lucas</h2>
+                    <p>
+                        Desenvolvo páginas simples e funcionais usando HTML, CSS e JavaScript.
+                        Meu foco é deixar a experiência do usuário clara e direta.
+                    </p>
+                    <span class="badge">Front‑end prático</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="habilidades">
+            <div class="panel">
+                <h2>Habilidades</h2>
+                <p style="color: var(--color-muted); margin-bottom: 24px;">
+                    Ferramentas e tecnologias que uso com frequência em projetos reais.
+                </p>
+
+                <ul class="skills">
+                    <li>HTML5</li>
+                    <li>CSS / Grid / Flexbox</li>
+                    <li>JavaScript (ES6+)</li>
+                    <li>React</li>
+                    <li>Git & GitHub</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projetos">
+            <div class="panel">
+                <h2>Projetos</h2>
+                <p style="color: var(--color-muted); margin-bottom: 28px;">
+                    Alguns projetos que desenvolvi e compartilhei para demonstrar habilidades de front-end.
+                </p>
+
+                <div class="grid grid-2">
+                    <article class="project">
+                        <h3>Portfólio Pessoal</h3>
+                        <p>Esta página é um exemplo de layout simples e responsivo com HTML e CSS.</p>
+                        <div class="project-links">
+                            <a href="#">Ver código</a>
+                        </div>
+                    </article>
+
+
+
+                </div>
+            </div>
+        </section>
+
+<section id="contato">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Vamos nos conectar</h3>
+                    <p style="color: var(--color-muted);">
+                        Fique à vontade para enviar uma mensagem ou me seguir nas redes.
+                    </p>
+
+                    <div class="social-links">
+
+                        <a href="https://github.com/lucasmatheus13574-cell" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+
+                    <div style="margin-top: 18px;">
+                        <strong>Email:</strong> <a href="mailto:lucas@exemplo.com">lucas@exemplo.com</a><br />
+                        <strong>Localização:</strong> Fortaleza , -CE   
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Envie uma mensagem</h3>
+                    <p style="color: var(--color-muted);">Preencha o formulário abaixo e eu retornarei o contato assim
+                        que possível.</p>
+
+                    <form id="contactForm" novalidate>
+                        <div class="form-alert" id="formAlert" role="status"></div>
+
+                        <label>
+                            Nome completo
+                            <input type="text" name="name" id="name" placeholder="Seu nome" required minlength="2" />
+                        </label>
+
+                        <label>
+                            Email
+                            <input type="email" name="email" id="email" placeholder="seu@email.com" required />
+                        </label>
+
+                        <label>
+                            Mensagem
+                            <textarea name="message" id="message" placeholder="Escreva sua mensagem" required
+                                minlength="10"></textarea>
+                        </label>
+
+                        <button type="submit" class="btn">Enviar mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>
+                Desenvolvido com ❤️ | Lucas Matheus 
+                <br />
+                Quer ver mais? <a href="#projetos">Veja meus projetos</a>.
+            </p>
+        </footer>
+    </div>
+
+    <script>
+      const form = document.querySelector('#contactForm');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        alert('Mensagem enviada! Obrigado.');
+        form.reset();
+      });
+    </script>
+</body>
+
+</html>
