@@ -1,11 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulário com Validação</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input {
+            display: block;
+            margin: 10px auto;
+            padding: 8px;
+            width: 250px;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f4f4f4;
+            margin: 5px auto;
+            padding: 10px;
+            width: 300px;
+            text-align: left;
+        }
+    </style>
 </head>
+
 <body>
-    <script src="JavaScriptAtividade11.js"></script>
+
+    <h1>Cadastro de Usuário</h1>
+
+
+    <form id="formulario">
+
+        <input type="text" id="nome" placeholder="Nome de usuário">
+        <input type="password" id="senha" placeholder="Senha">
+        <input type="tel" id="telefone" placeholder="Telefone">
+        <input type="date" id="nascimento">
+        <input type="email" id="email" placeholder="Email">
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <button id="limpar">Limpar Lista</button>
+
+
+    <ul id="listaUsuarios"></ul>
+
+    <script>
+        const form = document.getElementById("formulario");
+        const lista = document.getElementById("listaUsuarios");
+        const btnLimpar = document.getElementById("limpar");
+
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); 
+
+            // capturando valores
+            const nome = document.getElementById("nome").value.trim();
+            const senha = document.getElementById("senha").value.trim();
+            const telefone = document.getElementById("telefone").value.trim();
+            const nascimento = document.getElementById("nascimento").value;
+            const email = document.getElementById("email").value.trim();
+
+    
+            if (!nome || !senha || !telefone || !nascimento || !email) {
+                console.error("Erro: todos os campos devem ser preenchidos!");
+                return;
+            }
+
+
+            const li = document.createElement("li");
+
+            li.innerHTML = `
+        <strong>Nome:</strong> ${nome} <br>
+        <strong>Telefone:</strong> ${telefone} <br>
+        <strong>Nascimento:</strong> ${nascimento} <br>
+        <strong>Email:</strong> ${email}
+        `;
+
+
+            lista.appendChild(li);
+
+
+            form.reset();
+        });
+
+
+        btnLimpar.addEventListener("click", function () {
+            lista.innerHTML = ""; 
+        });
+    </script>
+
 </body>
+
 </html>
