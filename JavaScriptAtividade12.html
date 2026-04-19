@@ -1,11 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gerenciador de Notas</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        input {
+            padding: 10px;
+            width: 250px;
+        }
+
+        button {
+            padding: 10px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background: #f4f4f4;
+            margin: 5px auto;
+            padding: 10px;
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remover {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px;
+        }
+    </style>
 </head>
+
 <body>
-    <script src="JavaScriptAtividade12.js"></script>
+
+    <h1>Gerenciador de Notas</h1>
+
+
+    <input type="text" id="inputNota" placeholder="Título da nota">
+    <button id="btnAdicionar">Adicionar Nota</button>
+
+
+    <ul id="listaNotas"></ul>
+
+    <script>
+        const input = document.getElementById("inputNota");
+        const botao = document.getElementById("btnAdicionar");
+        const lista = document.getElementById("listaNotas");
+
+        const STORAGE_KEY = "notas";
+
+
+        function obterNotas() {
+            const dados = localStorage.getItem(STORAGE_KEY);
+            return dados ? JSON.parse(dados) : [];
+        }
+
+
+        function salvarNotas(notas) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(notas));
+        }
+
+
+        function renderizarNotas() {
+            lista.innerHTML = "";
+
+            const notas = obterNotas();
+
+            notas.forEach((nota) => {
+                const li = document.createElement("li");
+
+                li.textContent = nota.titulo;
+
+
+                const btnRemover = document.createElement("button");
+                btnRemover.textContent = "Remover";
+                btnRemover.classList.add("remover");
+
+                btnRemover.addEventListener("click", () => {
+                    removerNota(nota.titulo);
+                });
+
+                li.appendChild(btnRemover);
+                lista.appendChild(li);
+            });
+        }
+
+
+        botao.addEventListener("click", () => {
+            const titulo = input.value.trim();
+
+            if (titulo === "") {
+                console.error("Digite um título!");
+                return;
+            }
+
+            let notas = obterNotas();
+
+
+            const existe = notas.some(n => n.titulo === titulo);
+
+            if (existe) {
+                console.error("Essa nota já existe!");
+                return;
+            }
+
+            const novaNota = { titulo };
+
+            notas.push(novaNota);
+            salvarNotas(notas);
+
+            input.value = "";
+            renderizarNotas();
+        });
+
+
+        function removerNota(titulo) {
+            let notas = obterNotas();
+
+            notas = notas.filter(n => n.titulo !== titulo);
+
+            salvarNotas(notas);
+            renderizarNotas();
+        }
+
+
+        renderizarNotas();
+    </script>
+
 </body>
+
 </html>
