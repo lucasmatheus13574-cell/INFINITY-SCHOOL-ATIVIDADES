@@ -1,11 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastro de Usuário</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        form {
+            display: inline-block;
+            text-align: left;
+        }
+
+        input {
+            display: block;
+            margin: 8px 0;
+            padding: 8px;
+            width: 250px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .erro {
+            color: red;
+            font-size: 12px;
+            height: 14px;
+        }
+
+        .sucesso {
+            color: green;
+            margin-top: 15px;
+        }
+    </style>
 </head>
+
 <body>
-    <script src="JavaScriptAtividade13.js"></script>
+
+    <h1>Cadastro de Usuário</h1>
+
+    <form id="formCadastro">
+
+        <input type="text" id="nome" placeholder="Nome">
+        <div class="erro" id="erroNome"></div>
+
+        <input type="text" id="usuario" placeholder="Usuário">
+        <div class="erro" id="erroUsuario"></div>
+
+        <input type="password" id="senha" placeholder="Senha">
+        <div class="erro" id="erroSenha"></div>
+
+        <input type="email" id="email" placeholder="Email">
+        <div class="erro" id="erroEmail"></div>
+
+        <input type="date" id="nascimento">
+        <div class="erro" id="erroNascimento"></div>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <div id="mensagemSucesso" class="sucesso"></div>
+
+    <script>
+        const form = document.getElementById("formCadastro");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            limparErros();
+            document.getElementById("mensagemSucesso").textContent = "";
+
+            try {
+                validarFormulario();
+
+
+                document.getElementById("mensagemSucesso").textContent =
+                    "Cadastro realizado com sucesso!";
+
+                form.reset();
+
+            } catch (erro) {
+                exibirErro(erro);
+            }
+        });
+
+
+        function validarFormulario() {
+            const nome = document.getElementById("nome").value.trim();
+            const usuario = document.getElementById("usuario").value.trim();
+            const senha = document.getElementById("senha").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const nascimento = document.getElementById("nascimento").value;
+
+            if (!nome) throw { campo: "nome", mensagem: "Nome é obrigatório" };
+
+            if (!usuario) throw { campo: "usuario", mensagem: "Usuário é obrigatório" };
+
+            if (senha.length < 6)
+                throw { campo: "senha", mensagem: "Senha deve ter no mínimo 6 caracteres" };
+
+            if (!email.includes("@"))
+                throw { campo: "email", mensagem: "Email inválido" };
+
+            if (!nascimento)
+                throw { campo: "nascimento", mensagem: "Data de nascimento obrigatória" };
+
+            const idade = calcularIdade(nascimento);
+
+            if (idade < 18)
+                throw { campo: "nascimento", mensagem: "Usuário deve ser maior de 18 anos" };
+        }
+
+
+        function calcularIdade(data) {
+            const hoje = new Date();
+            const nascimento = new Date(data);
+
+            let idade = hoje.getFullYear() - nascimento.getFullYear();
+            const mes = hoje.getMonth() - nascimento.getMonth();
+
+            if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+                idade--;
+            }
+
+            return idade;
+        }
+
+
+        function exibirErro(erro) {
+            const campoErro = document.getElementById("erro" + capitalize(erro.campo));
+            if (campoErro) {
+                campoErro.textContent = erro.mensagem;
+            }
+        }
+
+
+        function limparErros() {
+            const erros = document.querySelectorAll(".erro");
+            erros.forEach(e => e.textContent = "");
+        }
+
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+    </script>
+
 </body>
+
 </html>
